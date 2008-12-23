@@ -14,14 +14,17 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>
 
 DEFINES =
-OBJECTS = boot.o character.o input.o main.o
+OBJECTS = battle.o boot.o character.o input.o main.o
 LIBRARIES = OGRE OIS
 CC = g++ -Wall -Wno-deprecated -g -c
 CFLAGS = $(shell pkg-config --cflags $(LIBRARIES)) $(DEFINES)
 LIBS = $(shell pkg-config --libs $(LIBRARIES))
 
-fog: $(OBJECTS)
+ff: $(OBJECTS)
 	g++ -Wall -Wno-deprecated -g $(OBJECTS) $(CFLAGS) $(LIBS) -o ff
+
+battle.o: battle.cpp battle.hpp input_systems.hpp macros.hpp
+	$(CC) $(CFLAGS) battle.cpp
 
 boot.o: boot.cpp boot.hpp input.hpp macros.hpp
 	$(CC) $(CFLAGS) boot.cpp
@@ -32,7 +35,7 @@ character.o: character.cpp character.hpp macros.hpp
 input.o: input.cpp input.hpp input_systems.hpp macros.hpp
 	$(CC) $(CFLAGS) input.cpp
 
-main.o: main.cpp boot.hpp macros.hpp
+main.o: main.cpp battle.hpp boot.hpp macros.hpp
 	$(CC) $(CFLAGS) main.cpp
 
 .PHONY : all clean

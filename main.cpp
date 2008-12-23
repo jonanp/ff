@@ -15,12 +15,13 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
+#include "battle.hpp"
 #include "boot.hpp"
-#include "character.hpp"
 
 int main(int argc, char *argv[]) {
   boot();
-  Ogre::SceneManager *scene = Ogre::Root::getSingleton().createSceneManager(Ogre::ST_GENERIC);
-  Character player("Player", *scene);
+  Battle *battle = new Battle;
+  battle->start();
+  delete battle;
   return 0;
 }
