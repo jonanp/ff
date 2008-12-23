@@ -34,8 +34,8 @@ enum {WALK,
 /// 
 class Character {
   public:
-    Character(const char *name);
-    ~Character(void) {}
+    Character(const char *name, Ogre::SceneManager &scene_manager); // Constructor
+    ~Character(void) {} // Destructor
 
   private:
     // Sets all the defined animations.

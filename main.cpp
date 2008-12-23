@@ -20,6 +20,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 int main(int argc, char *argv[]) {
   boot();
-  Character player("Squall");
+  Ogre::SceneManager *scene = Ogre::Root::getSingleton().createSceneManager(Ogre::ST_GENERIC);
+  Character player("Player", *scene);
   return 0;
 }
