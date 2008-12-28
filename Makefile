@@ -23,19 +23,19 @@ LIBS = $(shell pkg-config --libs $(LIBRARIES))
 ff: $(OBJECTS)
 	g++ -Wall -Wno-deprecated -g $(OBJECTS) $(CFLAGS) $(LIBS) -o ff
 
-battle.o: battle.cpp battle.hpp input_systems.hpp macros.hpp
+battle.o: battle.cpp battle.hpp character.hpp input_systems.hpp macros.hpp
 	$(CC) $(CFLAGS) battle.cpp
 
 boot.o: boot.cpp boot.hpp input.hpp macros.hpp
 	$(CC) $(CFLAGS) boot.cpp
 
-character.o: character.cpp character.hpp macros.hpp
+character.o: character.cpp character.hpp battle.hpp macros.hpp
 	$(CC) $(CFLAGS) character.cpp
 
 input.o: input.cpp input.hpp input_systems.hpp macros.hpp
 	$(CC) $(CFLAGS) input.cpp
 
-main.o: main.cpp battle.hpp boot.hpp macros.hpp
+main.o: main.cpp battle.hpp boot.hpp character.hpp macros.hpp
 	$(CC) $(CFLAGS) main.cpp
 
 .PHONY : all clean
@@ -44,5 +44,5 @@ all: clean
 	make
 
 clean:
-	rm -f fog *~ $(OBJECTS)
+	rm -f ff *~ $(OBJECTS)
 

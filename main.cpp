@@ -17,11 +17,20 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 #include "battle.hpp"
 #include "boot.hpp"
+#include "character.hpp"
 
 int main(int argc, char *argv[]) {
   boot();
-  Battle *battle = new Battle;
+  Character *char1 = new Character("orc_archer");
+  Character *char2 = new Character("Player");
+  std::vector<Character*> team1;
+  std::vector<Character*> team2;
+  team1.push_back(char1);
+  team2.push_back(char2);
+  Battle *battle = new Battle(team1, team2);
   battle->start();
   delete battle;
+  delete char1;
+  delete char2;
   return 0;
 }

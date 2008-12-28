@@ -31,16 +31,22 @@ enum {WALK,
       ATTACK,
       NUM_ANIMATIONS};
 
+class Battle;
+
 /// 
 class Character {
   public:
-    Character(const char *name, Ogre::SceneManager &scene_manager); // Constructor
+    Character(std::string name); // Constructor
     ~Character(void) {} // Destructor
+
+    /// 
+    void addToBattle(Battle *battle, Ogre::Vector3 position);
 
   private:
     // Sets all the defined animations.
     void setAnimations(void);
 
+    std::string name;
     double max_life, actual_life;
     double max_power, actual_power;
     double strength, agility;

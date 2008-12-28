@@ -22,22 +22,34 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 #ifndef BATTLE_HPP
 #define BATTLE_HPP
 
+#include <vector>
+
 #include <Ogre.h>
 
 #include "macros.hpp"
 
+class Character;
+
 /// 
 class Battle : public Ogre::FrameListener {
   public:
-    Battle(void); // Constructor
+    Battle(std::vector<Character*> team1, std::vector<Character*> team2); // Constructor
     ~Battle(void) {} // Destructor
 
     /// 
-    void start();
+    void start(void);
+
+    /// 
+    Ogre::SceneManager* getSceneManager(void) {return scene_manager;}
 
   private:
+    // 
+    void setCharacters(void);
+
     // This function is called at the beginnig of every frame.
     virtual bool frameStarted(const Ogre::FrameEvent& event);
+
+    std::vector<Character*> team1, team2;
 
     Ogre::SceneManager *scene_manager;
     Ogre::Camera *camera;
